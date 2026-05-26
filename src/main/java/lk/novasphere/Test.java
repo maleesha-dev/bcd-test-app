@@ -1,4 +1,4 @@
-package lk.novasphere.servlet;
+package lk.novasphere;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,9 +16,8 @@ public class Test extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             InitialContext ic = new InitialContext();
-            Object lookup = ic.lookup("java:global/bcd-webapp/Cal");
-            System.out.println(lookup);
-
+            Cal cal = (Cal) ic.lookup("java:global/bcd-webapp/CalImpl");
+            cal.getResult(40,60);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
